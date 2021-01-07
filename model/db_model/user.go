@@ -6,7 +6,7 @@
  * @Date: 2021/01/02 4:16 下午
  */
 
-package model
+package db_model
 
 import "github.com/jinzhu/gorm"
 

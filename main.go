@@ -9,20 +9,19 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/spf13/viper"
 	"jiangbo.com/gin_jiang/common"
-	"os"
+	"jiangbo.com/gin_jiang/initailize"
 )
 
 func main() {
-	InitConfig()
+	initailize.InitConfig()
 	db := common.InitDB()
 	defer db.Close()
 
-	r := gin.Default()
-	r = CollectRouters(r)
+	r := initailize.Routers()
+
 	port := viper.GetString("server.port")
 	if port != "" {
 		panic(r.Run(":" + port))
@@ -30,13 +29,4 @@ func main() {
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
 
-func InitConfig() {
-	workDir, _ := os.Getwd()
-	viper.SetConfigName("application")
-	viper.SetConfigType("yml")
-	viper.AddConfigPath(workDir + "/config")
-	err := viper.ReadInConfig()
-	if err != nil {
-		panic(err)
-	}
-}
+

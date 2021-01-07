@@ -10,7 +10,7 @@ package common
 
 import (
 	"github.com/dgrijalva/jwt-go"
-	"jiangbo.com/gin_jiang/model"
+	"jiangbo.com/gin_jiang/model/db_model"
 	"time"
 )
 
@@ -21,7 +21,7 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-func ReleaseToken(user model.User) (string, error) {
+func ReleaseToken(user db_model.User) (string, error) {
 	expirationTime := time.Now().Add(7 * 24 * time.Hour)
 	claims := &Claims{
 		UserId: user.ID,

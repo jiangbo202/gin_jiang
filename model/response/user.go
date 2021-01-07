@@ -8,7 +8,9 @@
 
 package response
 
-import "jiangbo.com/gin_jiang/model"
+import (
+	"jiangbo.com/gin_jiang/model/db_model"
+)
 
 type UserResponse struct {
 	Id        uint   `json:id`
@@ -16,7 +18,7 @@ type UserResponse struct {
 	Telephone string `json:telephone`
 }
 
-func ToUserResponse(user model.User) UserResponse {
+func ToUserResponse(user db_model.User) UserResponse {
 	return UserResponse{
 		Id:        user.ID,
 		Name:      user.Name,

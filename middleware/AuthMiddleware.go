@@ -11,7 +11,7 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 	"jiangbo.com/gin_jiang/common"
-	"jiangbo.com/gin_jiang/model"
+	"jiangbo.com/gin_jiang/model/db_model"
 	"net/http"
 	"strings"
 )
@@ -41,7 +41,7 @@ func AuthMiddlewar() gin.HandlerFunc {
 		// 验证通过后获取claims里面的userId
 		userId := claims.UserId
 		DB := common.GetDB()
-		var user model.User
+		var user db_model.User
 		DB.First(&user, userId)
 		// 用户
 		if user.ID == 0{

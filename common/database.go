@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/spf13/viper"
-	"jiangbo.com/gin_jiang/model"
+	"jiangbo.com/gin_jiang/model/db_model"
 )
 
 var DB *gorm.DB
@@ -34,7 +34,7 @@ func InitDB() *gorm.DB {
 	if err != nil {
 		panic("连接mysql失败，err:" + err.Error())
 	}
-	db.AutoMigrate(&model.User{}) // 自动创建数据表
+	db.AutoMigrate(&db_model.User{}) // 自动创建数据表
 
 	DB = db
 	return db
